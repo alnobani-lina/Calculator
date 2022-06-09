@@ -1,0 +1,52 @@
+body{
+    background-color: black;
+    color: snow;
+}
+
+.buttons {
+    height: 400px;
+    width: 500px;
+    margin-left: 500px;
+    margin-top: 150px;
+    padding: 20px;
+    border: 2px solid snow;
+    box-shadow: 0 0 30px #64a8ed;
+}
+
+.display {
+    width: 355px;
+    height: 47px;
+    border: 1px solid snow;
+    margin-top: 50px;
+    float: left;
+}
+
+.clear {
+    width: 120px;
+    height: 50px;
+    margin-left: 363px;
+    margin-top: -20px;
+    float: left;
+}
+
+.operator {
+    width: 120px;
+    height: 50px;
+    margin-top: 10px;
+    float: left;
+}
+
+.numbers {
+    width: 120px;
+    height: 50px;
+    margin-top: 10px;
+    float: left;
+}
+
+button:focus {
+    border: 1px solid #64a8ed;
+    background-color: #d5dcde;
+}
+
+
+
