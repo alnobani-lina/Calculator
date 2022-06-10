@@ -11,6 +11,12 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
+    if(b == 0){
+      
+        alert("Division by 0 - > System failure , Auto distruct in 3 seconds !!!");
+        clearDisplay();
+        
+    }
     return a / b;
 }
 
@@ -36,12 +42,28 @@ let secondValue = 0;
 let currentOperator = "NAO";
 let firstDigit = true;
 let isFirstOp  = true;
+let isEqualClicked = false;
+let isSecondFilled = false;
+let isOpClicked = false;
 
 
 
+function clearDisplay() {
 
+    document.getElementById("display").innerHTML = "";
+    displayValue = 0;
+    firstValue = 0;
+    secondValue = 0;
+    currentOperator = "NAO";
+    firstDigit = true;
+    isFirstOp  = true;
+    isEqualClicked = false;
+    isSecondFilled = false;
+
+}
 
 function numb0() {
+    isOpClicked = false;
     if (firstDigit)
     {
         document.getElementById("display").innerHTML = "";
@@ -55,6 +77,7 @@ function numb0() {
 }
 
 function numb1() {
+    isOpClicked = false;
     if (firstDigit)
     {
         document.getElementById("display").innerHTML = "";
@@ -68,6 +91,7 @@ function numb1() {
 }
 
 function numb2() {
+    isOpClicked = false;
     if (firstDigit)
     {
         document.getElementById("display").innerHTML = "";
@@ -81,6 +105,7 @@ function numb2() {
 }
 
 function numb3() {
+    isOpClicked = false;
     if (firstDigit)
     {
         document.getElementById("display").innerHTML = "";
@@ -93,6 +118,7 @@ function numb3() {
     }
 }
 function numb4() {
+    isOpClicked = false;
     if (firstDigit)
     {
         document.getElementById("display").innerHTML = "";
@@ -106,6 +132,7 @@ function numb4() {
 }
 
 function numb5() {
+    isOpClicked = false;
     if (firstDigit)
     {
         document.getElementById("display").innerHTML = "";
@@ -119,6 +146,7 @@ function numb5() {
 }
 
 function numb6() {
+    isOpClicked = false;
     if (firstDigit)
     {
         document.getElementById("display").innerHTML = "";
@@ -131,6 +159,7 @@ function numb6() {
     }
 }
 function numb7() {
+    isOpClicked = false;
     if (firstDigit)
     {
         document.getElementById("display").innerHTML = "";
@@ -144,6 +173,7 @@ function numb7() {
 }
 
 function numb8() {
+    isOpClicked = false;
     if (firstDigit)
     {
         document.getElementById("display").innerHTML = "";
@@ -157,6 +187,7 @@ function numb8() {
 }
 
 function numb9() {
+    isOpClicked = false;
     if (firstDigit)
     {
         document.getElementById("display").innerHTML = "";
@@ -170,97 +201,215 @@ function numb9() {
 }
 
 function add2() {
+    isEqualClicked = false;
+    if(document.getElementById("display").innerHTML == "")
+    return;
+    if(isOpClicked)
+    return;
     if (isFirstOp)
     {
-        firstValue = parseInt(document.getElementById("display").innerHTML);
+        firstValue = parseFloat(document.getElementById("display").innerHTML);
         currentOperator = "+";
         isFirstOp = false;
         firstDigit = true;
+        isSecondFilled = false;
+        isOpClicked = true;
+
     }
     else
     {
-        secondValue = parseInt(document.getElementById("display").innerHTML);
+        secondValue = parseFloat(document.getElementById("display").innerHTML);
         displayValue = operate(currentOperator , firstValue , secondValue);
         currentOperator = "+";
         firstDigit = true;
         isFirstOp = false;
         document.getElementById("display").innerHTML = displayValue;
         firstValue = displayValue;
+        isSecondFilled = true;
+        isOpClicked = true;
     }
 }
 
 function sub() {
+    isEqualClicked = false;
+    if(document.getElementById("display").innerHTML == "")
+    return;
+    if(isOpClicked)
+    return;
     if (isFirstOp)
     {
-        firstValue = parseInt(document.getElementById("display").innerHTML);
+        firstValue = parseFloat(document.getElementById("display").innerHTML);
         currentOperator = "-";
         isFirstOp = false;
         firstDigit = true;
+        isSecondFilled = false;
+        isOpClicked = true;
     }
     else
     {
-        secondValue = parseInt(document.getElementById("display").innerHTML);
+        secondValue = parseFloat(document.getElementById("display").innerHTML);
         displayValue = operate(currentOperator , firstValue , secondValue);
         currentOperator = "-";
         firstDigit = true;
         isFirstOp = false;
         document.getElementById("display").innerHTML = displayValue;
         firstValue = displayValue;
+        isSecondFilled = true;
+        isOpClicked = true;
     }
 }
 
 function multi() {
+    isEqualClicked = false;
+    if(isOpClicked)
+       return;
+    if(document.getElementById("display").innerHTML == "")
+        return;
     if (isFirstOp)
     {
-        firstValue = parseInt(document.getElementById("display").innerHTML);
+        firstValue = parseFloat(document.getElementById("display").innerHTML);
         currentOperator = "*";
         isFirstOp = false;
         firstDigit = true;
+        isSecondFilled = false;
+        isOpClicked = true;
     }
     else
     {
-        secondValue = parseInt(document.getElementById("display").innerHTML);
+        secondValue = parseFloat(document.getElementById("display").innerHTML);
         displayValue = operate(currentOperator , firstValue , secondValue);
         currentOperator = "*";
         firstDigit = true;
         isFirstOp = false;
         document.getElementById("display").innerHTML = displayValue;
         firstValue = displayValue;
+        isSecondFilled = true;
+        isOpClicked = true;
     }
 }
 
 function equal() {
-    //document.getElementById("display").innerHTML = document.getElementById("display").innerHTML + "=";
+    
+    if(!isFirstOp)
+    isSecondFilled = true;
+    if (document.getElementById("display").innerHTML == "")
+        return;
+    if (!isEqualClicked && isSecondFilled && isOpClicked == false){
+        
+        secondValue = parseFloat(document.getElementById("display").innerHTML);
+        if(secondValue == 0){
+            alert("Division by 0 - > System failure , Auto distruct in 3 seconds !!!");
+            clearDisplay();
+            return;
+        }
+        displayValue = operate(currentOperator , firstValue , secondValue);
+        currentOperator = "NAO";
+        firstDigit = true;
+        isFirstOp = true;
+        secondValue = 0;
+        firstValue = displayValue;
+        document.getElementById("display").innerHTML = displayValue;
+        isEqualClicked = true;
+        isSecondFilled = true;
+        
+    }
 }
 
 function dici() {
-    document.getElementById("display").innerHTML = document.getElementById("display").innerHTML + ".";
+    console.log(document.getElementById("display").innerHTML);
+    if ( firstDigit)
+    {
+         document.getElementById("display").innerHTML = "0."
+         firstDigit = false;
+    }
+    else if (!(document.getElementById("display").innerHTML.includes(".")))
+         document.getElementById("display").innerHTML = document.getElementById("display").innerHTML + ".";
 }
 
 function div() {
+    isEqualClicked = false;
+    if(document.getElementById("display").innerHTML == "")
+    return;
+    if(isOpClicked)
+    return;
     if (isFirstOp)
     {
-        firstValue = parseInt(document.getElementById("display").innerHTML);
+        firstValue = parseFloat(document.getElementById("display").innerHTML);
         currentOperator = "/";
         isFirstOp = false;
         firstDigit = true;
+        isSecondFilled = false;
+        isOpClicked = true;
     }
     else
     {
-        secondValue = parseInt(document.getElementById("display").innerHTML);
+        secondValue = parseFloat(document.getElementById("display").innerHTML);
         displayValue = operate(currentOperator , firstValue , secondValue);
         currentOperator = "/";
         firstDigit = true;
         isFirstOp = false;
         document.getElementById("display").innerHTML = displayValue;
         firstValue = displayValue;
+        isSecondFilled = true;
+        isOpClicked = true;
+    }
+}
+
+function backspaceButton()
+{
+    
+    let value = document.getElementById("display").innerHTML;
+    if(value.length == 1)
+    document.getElementById("display").innerHTML = "";
+    else
+    {
+    console.log(value);
+    value = value.substring(0 , value.length - 1);
+    console.log(value);
+    document.getElementById("display").innerHTML = value;
     }
 }
 
 
 
 
-
-function clear() {
-    document.getElementById("display").innerHTML = 0;
-}
+document.addEventListener('keydown', (event) => {
+    console.log(event.key);
+    if  (event.key == 0)
+        numb0();
+    else if (event.key == 1)
+        numb1();
+    else if (event.key == 2)
+        numb2(); 
+        else if (event.key == 3)
+        numb3();
+    else if (event.key == 4)
+        numb4(); 
+        else if (event.key == 5)
+        numb5();
+    else if (event.key == 6)
+        numb6(); 
+        else if (event.key == 7)
+        numb7();
+    else if (event.key == 8)
+        numb8();           
+    else if (event.key == 9)
+        numb9(); 
+    else if (event.key == "+")
+        add2();
+    else if (event.key == "-")
+        sub(); 
+        else if (event.key == "*")
+        multi();
+    else if (event.key == "/")
+        div();
+    else if (event.key == "=" || event.key == "Enter")
+        equal();
+    else if (event.key == ".")
+        dici(); 
+    else if(event.key == "Backspace")
+        backspaceButton();
+    else if (event.key == "Delete")
+        clearDisplay();
+                                   
+});
