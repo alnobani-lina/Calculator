@@ -10,25 +10,25 @@
 <body>
    <div class="buttons">
     <div class="float">
-        <div class="disply" id="disply">0</div>
-        <button class="clear">C</button>
+        <div class="disply" id="display"></div>
+        <button class="clear" onclick="clear()">C</button>
     </div>
-    <button class="numbers" id="num7" onclick="numb7()">7</button>
-    <button class="numbers" id="num8" onclick="numb8()">8</button>
+    <button class="numbers" onclick="numb7()">7</button>
+    <button class="numbers" onclick="numb8()">8</button>
     <button class="numbers" onclick="numb9()">9</button>
-    <button class="operator" onclick="multi()">*</button>
-    <button class="numbers">4</button>
-    <button class="numbers">5</button>
-    <button class="numbers">6</button>
-    <button class="operator">-</button>
-    <button class="numbers">1</button>
-    <button class="numbers">2</button>
-    <button class="numbers">3</button>
-    <button class="operator">+</button>
-    <button class="operator">.</button>
-    <button class="numbers">0</button>
-    <button class="operator">=</button>
-    <button class="operator">/</button>
+    <button class="operator" id="operator" onclick="multi()">*</button>
+    <button class="numbers" onclick="numb4()">4</button>
+    <button class="numbers" onclick="numb5()">5</button>
+    <button class="numbers" onclick="numb6()">6</button>
+    <button class="operator" id="operator" onclick="sub()">-</button>
+    <button class="numbers" onclick="numb1()">1</button>
+    <button class="numbers" onclick="numb2()">2</button>
+    <button class="numbers" onclick="numb3()">3</button>
+    <button class="operator" id="operator" onclick="add2()">+</button>
+    <button class="operator" onclick="dici()">.</button>
+    <button class="numbers" onclick="numb0()">0</button>
+    <button class="operator" id="operator" onclick="equal()">=</button>
+    <button class="operator" id="operator" onclick="div()">/</button>
    </div>
 </body>
 <script src="script.js"></script>
